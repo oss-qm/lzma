@@ -1,3 +1,9 @@
+lzma (9.22-2ubuntu3) quantal; urgency=low
+
+  * install more includes
+
+ -- Colin Watson <enrico.weigelt@gr13.net>  Fri, 11 Nov 2016 12:25:06 +0100
+
 lzma (9.22-2ubuntu2) quantal; urgency=low
 
   * Rebuild for new armel compiler default of ARMv5t.
