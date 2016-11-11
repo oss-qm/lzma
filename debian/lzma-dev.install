@@ -7,3 +7,4 @@ C/LzHash.h	usr/include/lzma
 C/LzFind.h	usr/include/lzma
 C/LzFind.c	usr/include/lzma
 C/7zVersion.h	usr/include/lzma
+C/7zCrc.h	usr/include/lzma
