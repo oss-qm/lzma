@@ -1,9 +1,10 @@
-PROG = lzma
+PROG = lzma_alone
+PROG2 = lzmp
 CXX = g++ -O2 -Wall
 CXX_C = gcc -O2 -Wall
 LIB = -lm
 RM = rm -f
-CFLAGS = -c -D_7ZIP_ST
+CFLAGS = -c -D_7ZIP_ST -DPACKAGE_VERSION="\"9.22\""
 
 ifdef SystemDrive
 IS_MINGW = 1
@@ -51,13 +52,37 @@ OBJS = \
   LzmaDec.o \
   LzmaEnc.o \
   Lzma86Dec.o \
-  Lzma86Enc.o \
+  Lzma86Enc.o 
 
+OBJS2 = \
+  7zCrc.o \
+  7zCrcOpt.o \
+  Alloc.o \
+  CpuArch.o \
+  CRC.o \
+  CWrappers.o \
+  $(FILE_IO).o \
+  FileStreams.o \
+  LzFind.o \
+  LzmaDec.o \
+  LzmaDecoder.o \
+  LzmaEnc.o \
+  LzmaEncoder.o \
+  StreamUtils.o \
+  StringConvert.o \
+  StringToInt.o \
+  lzmp.o
 
-all: $(PROG)
+all: $(PROG) $(PROG2)
 
 $(PROG): $(OBJS)
 	$(CXX) -o $(PROG) $(LDFLAGS) $(OBJS) $(LIB) $(LIB2)
+
+$(PROG2): $(OBJS2)
+	$(CXX) -o $(PROG2) $(LDFLAGS) $(OBJS2) $(LIB) $(LIB2)
+
+lzmp.o: lzmp.cpp
+	$(CXX) $(CFLAGS) lzmp.cpp
 
 LzmaAlone.o: LzmaAlone.cpp
 	$(CXX) $(CFLAGS) LzmaAlone.cpp
@@ -160,5 +185,5 @@ Lzma86Enc.o: ../../../../C/Lzma86Enc.c
 	$(CXX_C) $(CFLAGS) ../../../../C/Lzma86Enc.c
 
 clean:
-	-$(RM) $(PROG) $(OBJS)
+	-$(RM) $(PROG) $(OBJS) $(PROG2) $(OBJS2)
 

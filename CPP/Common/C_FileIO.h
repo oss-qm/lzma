@@ -28,6 +28,7 @@ public:
   bool Close();
   bool GetLength(UInt64 &length) const;
   off_t Seek(off_t distanceToMove, int moveMethod) const;
+  int GetHandle() const { return _handle; }
 };
 
 class CInFile: public CFileBase
